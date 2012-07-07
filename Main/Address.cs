@@ -37,6 +37,7 @@ namespace Main {
 		/// </summary>
 		public void Evaluate() {
 			Code.SetVisibility(Country.HasZipCode);
+			Code.Label = Country.ZipCodeName;
 		}
 
 		public string ToFormattedAddress() {

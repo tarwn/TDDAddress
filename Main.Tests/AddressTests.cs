@@ -261,5 +261,15 @@ namespace Main.Tests {
 
 			Assert.IsTrue(a.Code.IsVisible);
 		}
+
+		[Test]
+		public void CodeLabel_CountryIsUS_ItIsNamedZipCode() {
+			var a = new Address();
+
+			a.Country = Countries.US;
+
+			Assert.AreEqual("ZipCode", a.Code.Label);
+		}
+
 	}
 }
