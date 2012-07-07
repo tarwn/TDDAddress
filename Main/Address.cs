@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Main {
 	public class Address {
@@ -13,9 +14,9 @@ namespace Main {
 		public Input City { get; private set; }
 		public Input State { get; private set; }
 		public ValidatedInput Code { get; private set; }
-		public string Country { get; set; }
+		public Country Country { get; set; }
 
-		public string SourceCountry { get { return "US"; } }
+		public Country SourceCountry { get { return Countries.US; } }
 
 		public Address() {
 			LineDelimiter = "\n";
@@ -23,9 +24,10 @@ namespace Main {
 			State = new Input() { Label = "State/Region/Province" };
 			Code = new ValidatedInput() {
 				Label = "Zip/Postal Code",
-				Validate = (s) => s.Length > 0
+				Validate = (s) => ValidateCodeForCountry(s)
 			};
 			Country = Countries.US;
+			Evaluate();
 		}
 
 		/// <summary>
@@ -34,7 +36,7 @@ namespace Main {
 		/// lazy to build it into the individual setters)
 		/// </summary>
 		public void Evaluate() {
-
+			Code.SetVisibility(Country.HasZipCode);
 		}
 
 		public string ToFormattedAddress() {
@@ -52,7 +54,7 @@ namespace Main {
 			result.Append(GenerateCityLine());
 
 			if (Country != SourceCountry)
-				result.Append(LineDelimiter + Country);
+				result.Append(LineDelimiter + Country.CountryCode);
 
 			return result.ToString().ToUpper();
 		}
@@ -61,6 +63,11 @@ namespace Main {
 			string pattern = "{0} {1} {2}";
 
 			return LineDelimiter + String.Format(pattern, City.Value, State.Value, Code.Value);
+		}
+
+		private bool ValidateCodeForCountry(string code) {
+			return !Country.HasZipCode
+				|| Regex.IsMatch(code, Country.ZipCodePattern);
 		}
 
 	}
@@ -76,7 +83,7 @@ namespace Main {
 			UpdateValidity();
 		}
 
-		public void SetVisiblity(bool isVisible) {
+		public void SetVisibility(bool isVisible) {
 			IsVisible = isVisible;
 			UpdateValidity();
 		}

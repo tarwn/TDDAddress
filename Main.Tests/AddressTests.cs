@@ -182,7 +182,7 @@ namespace Main.Tests {
 			a.Country = Countries.US;
 			var result = a.ToFormattedAddress();
 
-			Assert.IsFalse(result.EndsWith(Countries.US));
+			Assert.IsFalse(result.EndsWith(Countries.US.CountryCode));
 		}
 
 		[Test]
@@ -192,7 +192,7 @@ namespace Main.Tests {
 			a.Country = Countries.CANADA;
 			var result = a.ToFormattedAddress();
 
-			Assert.IsTrue(result.EndsWith(Countries.CANADA));
+			Assert.IsTrue(result.EndsWith(Countries.CANADA.CountryCode));
 		}
 
 		[Test]
@@ -220,8 +220,46 @@ namespace Main.Tests {
 			a.Country = Countries.CANADA;
 			var result = a.ToFormattedAddress();
 
-			Assert.IsTrue(result.EndsWith(a.LineDelimiter + Countries.CANADA));
+			Assert.IsTrue(result.EndsWith(a.LineDelimiter + Countries.CANADA.CountryCode));
 		}
 
+		[Test]
+		public void ToFormattedAddress_CountryIsUSAndFiveDigitNumericCode_IsValid() {
+			var a = new Address();
+
+			a.Country = Countries.US;
+			a.Code.SetValue("12345");
+
+			Assert.IsTrue(a.Code.IsValid);
+		}
+
+		[Test]
+		public void ToFormattedAddress_CountryIsUSAndFivePlusFourDigitNumericCode_IsValid() {
+			var a = new Address();
+
+			a.Country = Countries.US;
+			a.Code.SetValue("12345-6789");
+
+			Assert.IsTrue(a.Code.IsValid);
+		}
+
+		[Test]
+		public void ToFormattedAddress_CountryIsUSAndNotValidCodeOption_IsNotValid() {
+			var a = new Address();
+
+			a.Country = Countries.US;
+			a.Code.SetValue("123a5");
+
+			Assert.IsFalse(a.Code.IsValid);
+		}
+
+		[Test]
+		public void CodeIsVisible_CountryIsUS_ItIsVisible() {
+			var a = new Address();
+
+			a.Country = Countries.US;
+
+			Assert.IsTrue(a.Code.IsVisible);
+		}
 	}
 }
