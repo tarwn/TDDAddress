@@ -35,6 +35,7 @@ Most of the rest of the rules shold have tests for input visibility, label wordi
 - When the address country is Brazil, the City Line is formatted as: postalcode town-state
 - When the address country is Brazil, the postal code is 5+3: NNNNN-NNN
 - When the address country is Mexico, the City Line is formatted as: postalcode town, province
+- When the address country is Mexico, the postal code is a 5 digit number: NNNNN
 - When the address country is Italy, the City Line is formatted as: postalcode town (provincia)
 - When the address country is New Zealand, Thailand, Japan, Singapore, the City Line is formatted as: town postalcode
 - When the address country is Ireland and the city is not Dublin, the City Line is formatted as: town, Co. county
