@@ -26,5 +26,16 @@ namespace Main.Tests {
 
 			Assert.IsTrue(result.Contains(sampleValue));
 		}
+
+		[Test]
+		public void ToFormattedAddress_RecipientIsProvided_ItAppearsFirstinOutput() {
+			var sampleRecipient = "Joe Schmoe";
+			var a = new Address();
+
+			a.Recipient = sampleRecipient;
+			var result = a.ToFormattedAddress();
+
+			Assert.IsTrue(result.StartsWith(sampleRecipient));
+		}
 	}
 }

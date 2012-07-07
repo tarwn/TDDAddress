@@ -34,7 +34,7 @@ namespace Main {
 		}
 
 		public string ToFormattedAddress() {
-			return AddressLine1;
+			return Recipient + AddressLine1;
 		}
 	}
 
