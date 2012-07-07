@@ -10,7 +10,8 @@ mailing address. Unfortunately this task is both just as easy and quite a bit
 harder than you might expect, as the actual rules for mailing addresses are 
 quite a bit more difficult than you would expect.
 
-The main branch will be setup to provide a clean, ready to go pair of projects.
+The main branch will be setup to provide a clean, ready to go pair of projects and 
+a file with the specs in it (Specs.md).
 
 Requirements:
 

@@ -35,7 +35,7 @@ Open the solution and enabled NCrunch (you have installed it, right?) by selecti
 
 Ready? Ok, moving on.
 
-Open up the AddressTests file in Main.Tests and the AddressRules file from the root of the solution. Add the first test to the AddressTests like so:
+Open up the AddressTests file in Main.Tests and the Specs.md file from the root of the solution. Add the first test to the AddressTests like so:
 
 
 
