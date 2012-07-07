@@ -22,7 +22,7 @@ Requirements:
 10- When a Postal Code is provided, it in the formatted output
 13- When the source country and address country are both USA, the country is not in the formatted output (based on domestic mail rules of USA)
 14- When the source country and address country are not both USA, the country is in the formatted output
-- (Per USPS recomendation) All letters in the address are formatted to uppercase in the formatted output
+15- (Per USPS recomendation) All letters in the address are formatted to uppercase in the formatted output
 - When the country is present in the formatted output, it is the only value on the last line
 
 Most of the rest of the rules shold have tests for input visibility, label wording, and verification of the output. So in the the city line rules there should be tests for the visibility of each of the mentioned fields, validation that the relevant labels show the correct text, and tests against the formatted output.

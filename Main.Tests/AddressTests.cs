@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using System.Text.RegularExpressions;
 
 namespace Main.Tests {
 
@@ -24,7 +25,7 @@ namespace Main.Tests {
 			a.AddressLine1 = sampleValue;
 			var result = a.ToFormattedAddress();
 
-			Assert.IsTrue(result.Contains(sampleValue));
+			Assert.IsTrue(result.Contains(sampleValue.ToUpper()));
 		}
 
 		[Test]
@@ -35,7 +36,7 @@ namespace Main.Tests {
 			a.Recipient = sampleRecipient;
 			var result = a.ToFormattedAddress();
 
-			Assert.IsTrue(result.StartsWith(sampleRecipient));
+			Assert.IsTrue(result.StartsWith(sampleRecipient.ToUpper()));
 		}
 
 		[Test]
@@ -48,7 +49,7 @@ namespace Main.Tests {
 			a.AddressLine1 = sampleAddressLine;
 			var result = a.ToFormattedAddress();
 
-			Assert.Less(result.IndexOf(sampleRecipient), result.IndexOf(sampleAddressLine));
+			Assert.Less(result.IndexOf(sampleRecipient.ToUpper()), result.IndexOf(sampleAddressLine.ToUpper()));
 		}
 
 		[Test]
@@ -61,7 +62,7 @@ namespace Main.Tests {
 			a.AddressLine1 = sampleAddressLine;
 			var result = a.ToFormattedAddress();
 
-			Assert.IsTrue(result.StartsWith(sampleRecipient + a.LineDelimiter + sampleAddressLine));
+			Assert.IsTrue(result.StartsWith(sampleRecipient.ToUpper() + a.LineDelimiter + sampleAddressLine.ToUpper()));
 		}
 
 		[Test]
@@ -74,7 +75,7 @@ namespace Main.Tests {
 			a.AddressLine2 = sampleAddressLine2;
 			var result = a.ToFormattedAddress();
 
-			Assert.IsTrue(result.Contains(a.AddressLine1 + a.LineDelimiter));
+			Assert.IsTrue(result.Contains(a.AddressLine1.ToUpper() + a.LineDelimiter));
 		}
 
 		[Test]
@@ -112,7 +113,7 @@ namespace Main.Tests {
 			a.City.SetValue(sampleCity);
 			var result = a.ToFormattedAddress();
 
-			Assert.IsTrue(result.Contains(sampleValue2 + a.LineDelimiter));
+			Assert.IsTrue(result.Contains(sampleValue2.ToUpper() + a.LineDelimiter));
 		}
 
 		[Test]
@@ -138,7 +139,7 @@ namespace Main.Tests {
 			a.AddressLine2 = sampleValue2;
 			var result = a.ToFormattedAddress();
 
-			Assert.IsTrue(result.Contains(sampleValue2));
+			Assert.IsTrue(result.Contains(sampleValue2.ToUpper()));
 		}
 
 		[Test]
@@ -149,7 +150,7 @@ namespace Main.Tests {
 			a.City.SetValue(sampleValue);
 			var result = a.ToFormattedAddress();
 
-			Assert.IsTrue(result.Contains(sampleValue));
+			Assert.IsTrue(result.Contains(sampleValue.ToUpper()));
 		}
 
 		[Test]
@@ -160,7 +161,7 @@ namespace Main.Tests {
 			a.State.SetValue(sampleValue);
 			var result = a.ToFormattedAddress();
 
-			Assert.IsTrue(result.Contains(sampleValue));
+			Assert.IsTrue(result.Contains(sampleValue.ToUpper()));
 		}
 
 		[Test]
@@ -192,6 +193,20 @@ namespace Main.Tests {
 			var result = a.ToFormattedAddress();
 
 			Assert.IsTrue(result.EndsWith(Countries.CANADA));
+		}
+
+		[Test]
+		public void ToFormattedAddress_AnyValues_AllOutputIsUpperCase() {
+			var mixedCases = "abc123ABC";
+			var a = new Address();
+
+			a.AddressLine1 = mixedCases;
+			a.AddressLine2 = mixedCases;
+			a.City.SetValue(mixedCases);
+			a.Country = Countries.CANADA;
+			var result = a.ToFormattedAddress();
+
+			Assert.IsFalse(Regex.IsMatch(result,"[a-z]"));
 		}
 
 	}

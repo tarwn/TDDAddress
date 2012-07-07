@@ -54,7 +54,7 @@ namespace Main {
 			if (Country != SourceCountry)
 				result.Append(LineDelimiter + Country);
 
-			return result.ToString();
+			return result.ToString().ToUpper();
 		}
 
 		private string GenerateCityLine() {
