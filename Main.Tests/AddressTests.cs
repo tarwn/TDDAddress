@@ -222,13 +222,14 @@ namespace Main.Tests {
 
 			Assert.IsTrue(result.EndsWith(a.LineDelimiter + Countries.CANADA.CountryCode));
 		}
-
+		
 		[Test]
 		public void ToFormattedAddress_CountryIsUSAndFiveDigitNumericCode_IsValid() {
 			var a = new Address();
 
 			a.Country = Countries.US;
 			a.Code.SetValue("12345");
+			a.Evaluate();
 
 			Assert.IsTrue(a.Code.IsValid);
 		}
@@ -239,6 +240,7 @@ namespace Main.Tests {
 
 			a.Country = Countries.US;
 			a.Code.SetValue("12345-6789");
+			a.Evaluate();
 
 			Assert.IsTrue(a.Code.IsValid);
 		}
@@ -249,6 +251,7 @@ namespace Main.Tests {
 
 			a.Country = Countries.US;
 			a.Code.SetValue("123a5");
+			a.Evaluate();
 
 			Assert.IsFalse(a.Code.IsValid);
 		}
@@ -258,6 +261,7 @@ namespace Main.Tests {
 			var a = new Address();
 
 			a.Country = Countries.US;
+			a.Evaluate();
 
 			Assert.IsTrue(a.Code.IsVisible);
 		}
@@ -267,8 +271,63 @@ namespace Main.Tests {
 			var a = new Address();
 
 			a.Country = Countries.US;
+			a.Evaluate();
 
 			Assert.AreEqual("ZipCode", a.Code.Label);
+		}
+
+
+		[Test]
+		public void ToFormattedAddress_CanadaAnd6DigitCodeWithSpace_IsValid() {
+			var a = new Address();
+
+			a.Country = Countries.CANADA;
+			a.Code.SetValue("A1A 1A1");
+			a.Evaluate();
+
+			Assert.IsTrue(a.Code.IsValid);
+		}
+
+		[Test]
+		public void ToFormattedAddress_CanadaAnd6DigitCodeWithoutSpace_IsValid() {
+			var a = new Address();
+
+			a.Country = Countries.CANADA;
+			a.Code.SetValue("A1A1A1");
+			a.Evaluate();
+
+			Assert.IsTrue(a.Code.IsValid);
+		}
+
+		[Test]
+		public void ToFormattedAddress_CountryIsCanadaAndNotValidCodeOption_IsNotValid() {
+			var a = new Address();
+
+			a.Country = Countries.CANADA;
+			a.Code.SetValue("123456");
+			a.Evaluate();
+
+			Assert.IsFalse(a.Code.IsValid);
+		}
+
+		[Test]
+		public void CodeIsVisible_CountryIsCanada_ItIsVisible() {
+			var a = new Address();
+
+			a.Country = Countries.CANADA;
+			a.Evaluate();
+
+			Assert.IsTrue(a.Code.IsVisible);
+		}
+
+		[Test]
+		public void CodeLabel_CountryIsCanada_ItIsNamedZipCode() {
+			var a = new Address();
+
+			a.Country = Countries.CANADA;
+			a.Evaluate();
+
+			Assert.AreEqual("Postal Code", a.Code.Label);
 		}
 
 	}

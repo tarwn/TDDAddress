@@ -28,7 +28,7 @@ Requirements:
 Most of the rest of the rules shold have tests for input visibility, label wording, and verification of the output. So in the the city line rules there should be tests for the visibility of each of the mentioned fields, validation that the relevant labels show the correct text, and tests against the formatted output.
 
 17- When the address country is USA, the zip code is 5 digits (NNNNN) or 5-4 (NNNNN-NNNN)
-- When the address country is Canada, the postal code is 6 characters with a space (A0A 0A0)
+18- When the address country is Canada, the postal code is 6 characters with a space (A0A 0A0)
 - When the address country is China or India, the City Line is formatted as: city, province postalcode
 - When the address country is USA, Canada, or Australia, the City Line is formatted as: city state/province postalcode
 - When the address country is Brazil, the City Line is formatted as: postalcode town-province

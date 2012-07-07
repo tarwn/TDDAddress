@@ -6,7 +6,7 @@ using System.Text;
 namespace Main {
 	public static class Countries {
 		public static Country US =		new Country("US", zipCodePattern: @"\d{5}(-?\d{4})?", zipCodeName: "ZipCode");
-		public static Country CANADA =	new Country("CA");
+		public static Country CANADA = new Country("CA", zipCodePattern: @"[A-Z]\d[A-Z] ?\d[A-Z]\d", zipCodeName: "Postal Code");
 	}
 
 	public class Country {
