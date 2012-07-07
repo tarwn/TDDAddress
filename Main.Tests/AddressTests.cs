@@ -223,6 +223,8 @@ namespace Main.Tests {
 			Assert.IsTrue(result.EndsWith(a.LineDelimiter + Countries.CANADA.CountryCode));
 		}
 
+		#region Postal Code Validation
+
 		[Test]
 		public void ToFormattedAddress_CountryIsUSAndFiveDigitNumericCode_IsValid() {
 			var a = new Address();
@@ -255,7 +257,7 @@ namespace Main.Tests {
 
 			Assert.IsFalse(a.Code.IsValid);
 		}
-
+		
 		[Test]
 		public void ToFormattedAddress_CanadaAnd6DigitCodeWithSpace_IsValid() {
 			var a = new Address();
@@ -289,6 +291,8 @@ namespace Main.Tests {
 			Assert.IsFalse(a.Code.IsValid);
 		}
 
+
+		#endregion
 
 		#region City Line Logic
 
