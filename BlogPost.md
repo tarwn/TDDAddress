@@ -37,7 +37,16 @@ Ready? Ok, moving on.
 
 Open up the AddressTests file in Main.Tests and the Specs.md file from the root of the solution. Add the first test to the AddressTests like so:
 
+	[Test]
+	public void ToFormattedAddress_AddressLine1IsProvided_ItAppearsInOutput() {
+		var sampleValue = "Address Line 1";
+		var a = new Address();
 
+		a.AddressLine1 = sampleValue;
+		var result = a.ToFormattedAddress();
+
+		Assert.IsTrue(result.Contains(sampleValue));
+	}
 
 This test lines up with the first rule in the rules file and after you add it you should see some red dots sowing up next to lines in the test. NCrunch is building and running the tests behind the scenes as you add more code, automagically. if we swich over to the Address class, we'll notice that it also has dots to indicate portions of the class that are referenced by failing tests. By right-clicking on any of these dots we have options to run tests in debuig mode, .... and so on.
 
