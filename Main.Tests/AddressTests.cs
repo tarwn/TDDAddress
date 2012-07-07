@@ -76,5 +76,28 @@ namespace Main.Tests {
 
 			Assert.IsTrue(result.Contains(a.AddressLine1 + a.LineDelimiter));
 		}
+
+		[Test]
+		public void ToFormattedAddress_AnyValuesProvided_DoesntEndInLineDelimiter() {
+			var sampleAddressLine = "Address Line 1";
+			var a = new Address();
+
+			a.AddressLine1 = sampleAddressLine;
+			var result = a.ToFormattedAddress();
+
+			Assert.IsFalse(result.EndsWith(a.LineDelimiter));
+		}
+
+		[Test]
+		public void ToFormattedAddress_AddressLine2Provided_DoesntEndInLineDelimiter() {
+			var sampleAddressLine = "Address Line 1";
+			var a = new Address();
+
+			a.AddressLine1 = sampleAddressLine;
+			a.AddressLine2 = sampleAddressLine;
+			var result = a.ToFormattedAddress();
+
+			Assert.IsFalse(result.EndsWith(a.LineDelimiter));
+		}
 	}
 }

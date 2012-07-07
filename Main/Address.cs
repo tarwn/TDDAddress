@@ -36,9 +36,18 @@ namespace Main {
 		}
 
 		public string ToFormattedAddress() {
-			return Recipient + LineDelimiter
-					+ AddressLine1 + LineDelimiter
-					+ AddressLine2;
+			var result = new StringBuilder();
+			result.Append(Recipient);
+
+			if (!String.IsNullOrWhiteSpace(Recipient))
+				result.Append(LineDelimiter);
+
+			result.Append(AddressLine1);
+			
+			if(!String.IsNullOrWhiteSpace(AddressLine2))
+				result.Append(LineDelimiter + AddressLine2);
+
+			return result.ToString();
 		}
 
 	}

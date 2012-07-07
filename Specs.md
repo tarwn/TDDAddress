@@ -13,7 +13,7 @@ Requirements:
 3- When a recipient is provided, it is the first entry in the formatted output
 4- When an Address Line 1 is provided, it occurs after the recipient in the formatted output
 5- When an Address Line 1 is provided with a later value, an end of line delimiter (carriage return) immediately follows
-- Formatted address output does not have a trailing end of line delimiter (carriage return)
+6- Formatted address output does not have a trailing end of line delimiter (carriage return)
 - When an Address Line 2 value is provided, it is in the formatted output
 - When an Address Line 2 value is provided, an end of line delimiter immediately follows
 - When an Address Line 1 is provided with a later value and Address Line 2 value is not provided, address line 1 will be followed by only one occurrence of end of line delimiter (carriage return)
