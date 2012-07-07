@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Main {
 	public class Address {
+		public string LineDelimiter { get; set; }
 
 		public string Recipient { get; set; }
 		public string AddressLine1 { get; set; }
@@ -15,6 +16,7 @@ namespace Main {
 		public string Country { get; set; }
 
 		public Address() {
+			LineDelimiter = "\n";
 			City = new Input() { Label = "City or Town" };
 			State = new Input() { Label = "State/Region/Province" };
 			Code = new ValidatedInput() {
@@ -34,8 +36,10 @@ namespace Main {
 		}
 
 		public string ToFormattedAddress() {
-			return Recipient + AddressLine1;
+			return Recipient + LineDelimiter
+					+ AddressLine1;
 		}
+
 	}
 
 	public class Input {

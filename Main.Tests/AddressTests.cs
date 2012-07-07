@@ -37,5 +37,31 @@ namespace Main.Tests {
 
 			Assert.IsTrue(result.StartsWith(sampleRecipient));
 		}
+
+		[Test]
+		public void ToFormattedAddress_RecipientAndAddressLine1IsProvided_ReceipientIsBeforeAddressLine1() {
+			var sampleRecipient = "Joe Schmoe";
+			var sampleAddressLine = "Address Line 1";
+			var a = new Address();
+
+			a.Recipient = sampleRecipient;
+			a.AddressLine1 = sampleAddressLine;
+			var result = a.ToFormattedAddress();
+
+			Assert.Less(result.IndexOf(sampleRecipient), result.IndexOf(sampleAddressLine));
+		}
+
+		[Test]
+		public void ToFormattedAddress_RecipientAndAddressLine1IsProvided_EntriesAreOnSeperateLines() {
+			var sampleRecipient = "Joe Schmoe";
+			var sampleAddressLine = "Address Line 1";
+			var a = new Address();
+
+			a.Recipient = sampleRecipient;
+			a.AddressLine1 = sampleAddressLine;
+			var result = a.ToFormattedAddress();
+
+			Assert.AreEqual(result, sampleRecipient + a.LineDelimiter + sampleAddressLine);
+		}
 	}
 }
