@@ -6,8 +6,8 @@ using System.Text;
 namespace Main {
 	public static class Countries {
 		public static Country US =		new Country("US", zipCodePattern: @"\d{5}(-?\d{4})?", zipCodeName: "ZipCode");
-		public static Country CANADA =	new Country("CA", zipCodePattern: @"[A-Z]\d[A-Z] ?\d[A-Z]\d", zipCodeName: "Postal Code");
-		public static Country CHINA =	new Country("CHINA", zipCodePattern: @".+", zipCodeName: "Postal Code", stateName: "Province");
+		public static Country CANADA = new Country("CA", zipCodePattern: @"[A-Z]\d[A-Z] ?\d[A-Z]\d", zipCodeName: "Postal Code", searchTerms: new string[] { "CANADA" });
+		public static Country CHINA =	new Country("CN", zipCodePattern: @".+", zipCodeName: "Postal Code", stateName: "Province", searchTerms: new string[]{ "CHINA" });
 
 		public static List<Country> _countries = new List<Country>() { 
 			US,
@@ -17,7 +17,7 @@ namespace Main {
 
 		public static Country SettingsFor(string countryName)
 		{
-			var country = _countries.Where(c => c.CountryCode == countryName).FirstOrDefault();
+			var country = _countries.Where(c => c.CountryCode == countryName || c.SearchTerms.Contains(countryName)).FirstOrDefault();
 			if (country == null)
 				throw new ArgumentException("Specific country is not a valid option");
 
@@ -39,13 +39,20 @@ namespace Main {
 		public string ZipCodePattern { get; private set; }
 		public string ZipCodeName { get; private set; }
 
-		public Country(string code, string cityLine = "c, s p", string cityName = "City", string stateName = "State", string zipCodePattern = "", string zipCodeName = "") {
+		public List<string> SearchTerms { get; private set; }
+
+		public Country(string code, string cityLine = "c, s p", string cityName = "City", string stateName = "State", 
+						string zipCodePattern = "", string zipCodeName = "", string [] searchTerms = null) {
 			CountryCode = code;
 			CityName = cityName;
 			ZipCodePattern = zipCodePattern;
 			ZipCodeName = zipCodeName;
 			CityLineTemplate = cityLine;
 			StateName = stateName;
+
+			SearchTerms = new List<string>();
+			if (searchTerms != null)
+				SearchTerms.AddRange(searchTerms);
 		}
 	}
 }

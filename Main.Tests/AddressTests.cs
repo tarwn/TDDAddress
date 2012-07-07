@@ -352,7 +352,7 @@ namespace Main.Tests {
 			Assert.AreEqual(expectedVisible, a.State.IsVisible);
 		}
 
-		[TestCase("CA", "Postal Code")]
+		[TestCase("CANADA", "Postal Code")]
 		[TestCase("CHINA", "Postal Code")]
 		public void CodeLabel_CountryIsCanada_ItIsNamedZipCode(string country, string expectedLabel) {
 			var a = new Address();
@@ -363,7 +363,7 @@ namespace Main.Tests {
 			Assert.AreEqual(expectedLabel, a.Code.Label);
 		}
 
-		[TestCase("CA", true)]
+		[TestCase("CANADA", true)]
 		[TestCase("CHINA", true)]
 		public void CodeIsVisible_CountryIsCanada_ItIsVisible(string country, bool expectedVisible) {
 			var a = new Address();
