@@ -124,5 +124,15 @@ namespace Main.Tests {
 			Assert.IsTrue(result.Contains(sampleValue));
 		}
 
+		[Test]
+		public void ToFormattedAddress_StateIsProvided_ItAppearsInOutput() {
+			var sampleValue = "SuperState";
+			var a = new Address();
+
+			a.State.SetValue(sampleValue);
+			var result = a.ToFormattedAddress();
+
+			Assert.IsTrue(result.Contains(sampleValue));
+		}
 	}
 }

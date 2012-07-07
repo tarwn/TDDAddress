@@ -18,7 +18,7 @@ Requirements:
 - When an Address Line 2 value is provided, an end of line delimiter immediately follows
 - When an Address Line 1 is provided with a later value and Address Line 2 value is not provided, address line 1 will be followed by only one occurrence of end of line delimiter (carriage return)
 8- When a City is provided, it is in the formatted output
-- When a State/Province is provided, it is in the formatted output
+9- When a State/Province is provided, it is in the formatted output
 - When a Postal Code is provided, it in the formatted output
 - When the source country and address country are both USA, the country is not in the formatted output (based on domestic mail rules of USA)
 - When the source country and address country are not both USA, the country is in the formatted output

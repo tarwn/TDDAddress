@@ -53,11 +53,9 @@ namespace Main {
 		}
 
 		private string GenerateCityLine() {
-			if (!String.IsNullOrWhiteSpace(City.Value)) {
-				return LineDelimiter + City.Value;
-			}
+			string pattern = "{0} {1} {2}";
 
-			return "";
+			return LineDelimiter + String.Format(pattern, City.Value, State.Value, Code.Value);
 		}
 
 	}
