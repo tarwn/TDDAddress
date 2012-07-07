@@ -51,6 +51,9 @@ namespace Main {
 
 			result.Append(GenerateCityLine());
 
+			if (Country != SourceCountry)
+				result.Append(LineDelimiter + Country);
+
 			return result.ToString();
 		}
 

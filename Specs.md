@@ -21,7 +21,7 @@ Requirements:
 9- When a State/Province is provided, it is in the formatted output
 10- When a Postal Code is provided, it in the formatted output
 13- When the source country and address country are both USA, the country is not in the formatted output (based on domestic mail rules of USA)
-- When the source country and address country are not both USA, the country is in the formatted output
+14- When the source country and address country are not both USA, the country is in the formatted output
 - (Per USPS recomendation) All letters in the address are formatted to uppercase in the formatted output
 - When the country is present in the formatted output, it is the only value on the last line
 

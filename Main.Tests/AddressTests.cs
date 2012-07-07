@@ -175,13 +175,23 @@ namespace Main.Tests {
 		}
 
 		[Test]
-		public void ToFormattedAddress_SourceAndtargetAreBothUS_CountryIsNotInOutput() {
+		public void ToFormattedAddress_SourceAndTargetAreBothUS_CountryIsNotInOutput() {
 			var a = new Address();
 
 			a.Country = Countries.US;
 			var result = a.ToFormattedAddress();
 
 			Assert.IsFalse(result.EndsWith(Countries.US));
+		}
+
+		[Test]
+		public void ToFormattedAddress_SourceAndTargetAreNotBothUS_CountryIsInOutput() {
+			var a = new Address();
+
+			a.Country = Countries.CANADA;
+			var result = a.ToFormattedAddress();
+
+			Assert.IsTrue(result.EndsWith(Countries.CANADA));
 		}
 
 	}

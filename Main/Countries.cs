@@ -6,5 +6,6 @@ using System.Text;
 namespace Main {
 	public static class Countries {
 		public const string US = "US";
+		public const string CANADA = "CA";
 	}
 }
