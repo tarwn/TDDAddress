@@ -331,6 +331,26 @@ namespace Main.Tests {
 
 		#region City Line Logic
 
+		[TestCase("CHINA","City")]
+		public void CityLabel_PerCountry_HasCorrectName(string country, string expectedLabel) {
+			var a = new Address();
+
+			a.Country = Countries.SettingsFor(country);
+			a.Evaluate();
+
+			Assert.AreEqual(expectedLabel, a.City.Label);
+		}
+
+		[TestCase("CHINA", true)]
+		public void CityLabel_PerCountry_HasCorrectVisibility(string country, bool expectedVisible) {
+			var a = new Address();
+
+			a.Country = Countries.SettingsFor(country);
+			a.Evaluate();
+
+			Assert.AreEqual(expectedVisible, a.City.IsVisible);
+		}
+
 		[Test]
 		public void ToFormattedAddress_China_CityLineInOutputMatchesSpec19() {
 			var a = new Address();
@@ -350,15 +370,5 @@ namespace Main.Tests {
 		}
 
 		#endregion
-
-		[TestCase("CHINA","City")]
-		public void CityLabel_PerCountry_HasCorrectName(string country, string expectedLabel) {
-			var a = new Address();
-
-			a.Country = Countries.SettingsFor(country);
-			a.Evaluate();
-
-			Assert.AreEqual(expectedLabel, a.City.Label);
-		}
 	}
 }
