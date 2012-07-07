@@ -99,5 +99,19 @@ namespace Main.Tests {
 
 			Assert.IsFalse(result.EndsWith(a.LineDelimiter));
 		}
+
+		[Test]
+		public void ToFormattedAddress_AddressLine2IsProvided_ItAppearsInOutput() {
+			var sampleValue = "Address Line 1";
+			var sampleValue2 = "Address Line 2";
+			var a = new Address();
+
+			a.AddressLine1 = sampleValue;
+			a.AddressLine2 = sampleValue2;
+			var result = a.ToFormattedAddress();
+
+			Assert.IsTrue(result.Contains(sampleValue2));
+		}
+
 	}
 }
