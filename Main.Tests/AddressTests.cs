@@ -209,5 +209,19 @@ namespace Main.Tests {
 			Assert.IsFalse(Regex.IsMatch(result,"[a-z]"));
 		}
 
+		[Test]
+		public void ToFormattedAddress_SourceAndTargetAreNotBothUS_CountryIsOnlyValueOnLastLine() {
+			var mixedCases = "abc123ABC";
+			var a = new Address();
+
+			a.AddressLine1 = mixedCases;
+			a.AddressLine2 = mixedCases;
+			a.City.SetValue(mixedCases);
+			a.Country = Countries.CANADA;
+			var result = a.ToFormattedAddress();
+
+			Assert.IsTrue(result.EndsWith(a.LineDelimiter + Countries.CANADA));
+		}
+
 	}
 }
