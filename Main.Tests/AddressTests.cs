@@ -406,6 +406,7 @@ namespace Main.Tests {
 		}
 
 		[TestCase("US")]
+		[TestCase("AUSTRALIA")]
 		public void ToFormattedAddress_USorAustralia_CityLineInOutputMatchesSpec20(string country) {
 			var a = new Address();
 			var sampleCity = "City";
