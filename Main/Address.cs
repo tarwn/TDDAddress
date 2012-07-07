@@ -15,6 +15,8 @@ namespace Main {
 		public ValidatedInput Code { get; private set; }
 		public string Country { get; set; }
 
+		public string SourceCountry { get { return "US"; } }
+
 		public Address() {
 			LineDelimiter = "\n";
 			City = new Input() { Label = "City or Town" };
