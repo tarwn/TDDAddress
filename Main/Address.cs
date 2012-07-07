@@ -39,6 +39,9 @@ namespace Main {
 			City.SetVisibility(Country.HasCity);
 			City.Label = Country.CityName;
 
+			State.SetVisibility(Country.HasState);
+			State.Label = Country.StateName;
+
 			Code.SetVisibility(Country.HasZipCode);
 			Code.Label = Country.ZipCodeName;
 		}

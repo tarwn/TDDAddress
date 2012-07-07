@@ -351,6 +351,26 @@ namespace Main.Tests {
 			Assert.AreEqual(expectedVisible, a.City.IsVisible);
 		}
 
+		[TestCase("CHINA", "Province")]
+		public void StateLabel_PerCountry_HasCorrectName(string country, string expectedLabel) {
+			var a = new Address();
+
+			a.Country = Countries.SettingsFor(country);
+			a.Evaluate();
+
+			Assert.AreEqual(expectedLabel, a.State.Label);
+		}
+
+		[TestCase("CHINA", true)]
+		public void StateLabel_PerCountry_HasCorrectVisibility(string country, bool expectedVisible) {
+			var a = new Address();
+
+			a.Country = Countries.SettingsFor(country);
+			a.Evaluate();
+
+			Assert.AreEqual(expectedVisible, a.State.IsVisible);
+		}
+
 		[Test]
 		public void ToFormattedAddress_China_CityLineInOutputMatchesSpec19() {
 			var a = new Address();
