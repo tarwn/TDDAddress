@@ -36,6 +36,9 @@ namespace Main {
 		/// lazy to build it into the individual setters)
 		/// </summary>
 		public void Evaluate() {
+			City.SetVisibility(Country.HasCity);
+			City.Label = Country.CityName;
+
 			Code.SetVisibility(Country.HasZipCode);
 			Code.Label = Country.ZipCodeName;
 		}

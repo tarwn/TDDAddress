@@ -349,8 +349,16 @@ namespace Main.Tests {
 			Assert.IsTrue(result.Contains(expectation.ToUpper()));
 		}
 
-
 		#endregion
 
+		[TestCase("CHINA","City")]
+		public void CityLabel_PerCountry_HasCorrectName(string country, string expectedLabel) {
+			var a = new Address();
+
+			a.Country = Countries.SettingsFor(country);
+			a.Evaluate();
+
+			Assert.AreEqual(expectedLabel, a.City.Label);
+		}
 	}
 }
