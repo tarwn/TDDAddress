@@ -206,7 +206,7 @@ namespace Main.Tests {
 			a.Country = Countries.CANADA;
 			var result = a.ToFormattedAddress();
 
-			Assert.IsFalse(Regex.IsMatch(result,"[a-z]"));
+			Assert.IsFalse(Regex.IsMatch(result, "[a-z]"));
 		}
 
 		[Test]
@@ -222,7 +222,7 @@ namespace Main.Tests {
 
 			Assert.IsTrue(result.EndsWith(a.LineDelimiter + Countries.CANADA.CountryCode));
 		}
-		
+
 		[Test]
 		public void ToFormattedAddress_CountryIsUSAndFiveDigitNumericCode_IsValid() {
 			var a = new Address();
@@ -275,7 +275,7 @@ namespace Main.Tests {
 
 			Assert.AreEqual("ZipCode", a.Code.Label);
 		}
-		
+
 		[Test]
 		public void ToFormattedAddress_CanadaAnd6DigitCodeWithSpace_IsValid() {
 			var a = new Address();
@@ -309,29 +309,10 @@ namespace Main.Tests {
 			Assert.IsFalse(a.Code.IsValid);
 		}
 
-		[Test]
-		public void CodeIsVisible_CountryIsCanada_ItIsVisible() {
-			var a = new Address();
-
-			a.Country = Countries.CANADA;
-			a.Evaluate();
-
-			Assert.IsTrue(a.Code.IsVisible);
-		}
-
-		[Test]
-		public void CodeLabel_CountryIsCanada_ItIsNamedZipCode() {
-			var a = new Address();
-
-			a.Country = Countries.CANADA;
-			a.Evaluate();
-
-			Assert.AreEqual("Postal Code", a.Code.Label);
-		}
 
 		#region City Line Logic
 
-		[TestCase("CHINA","City")]
+		[TestCase("CHINA", "City")]
 		public void CityLabel_PerCountry_HasCorrectName(string country, string expectedLabel) {
 			var a = new Address();
 
@@ -369,6 +350,28 @@ namespace Main.Tests {
 			a.Evaluate();
 
 			Assert.AreEqual(expectedVisible, a.State.IsVisible);
+		}
+
+		[TestCase("CA", "Postal Code")]
+		[TestCase("CHINA", "Postal Code")]
+		public void CodeLabel_CountryIsCanada_ItIsNamedZipCode(string country, string expectedLabel) {
+			var a = new Address();
+
+			a.Country = Countries.SettingsFor(country);
+			a.Evaluate();
+
+			Assert.AreEqual(expectedLabel, a.Code.Label);
+		}
+
+		[TestCase("CA", true)]
+		[TestCase("CHINA", true)]
+		public void CodeIsVisible_CountryIsCanada_ItIsVisible(string country, bool expectedVisible) {
+			var a = new Address();
+
+			a.Country = Countries.SettingsFor(country);
+			a.Evaluate();
+
+			Assert.AreEqual(expectedVisible, a.Code.IsVisible);
 		}
 
 		[Test]
