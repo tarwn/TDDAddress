@@ -14,6 +14,8 @@ namespace Main {
 		public ValidatedInput Code { get; private set; }
 		public string Country { get; set; }
 
+		public string SourceCountry { get { return "US"; } }
+
 		public Address() {
 			City = new Input() { Label = "City or Town" };
 			State = new Input() { Label = "State/Region/Province" };
