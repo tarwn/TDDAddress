@@ -61,7 +61,9 @@ namespace Main {
 		}
 
 		private string GenerateCityLine() {
-			string pattern = "{0} {1} {2}";
+			string pattern = Country.CityLineTemplate.Replace("c", "{0}")
+													 .Replace("s", "{1}")
+													 .Replace("p", "{2}");
 
 			return LineDelimiter + String.Format(pattern, City.Value, State.Value, Code.Value);
 		}

@@ -275,8 +275,7 @@ namespace Main.Tests {
 
 			Assert.AreEqual("ZipCode", a.Code.Label);
 		}
-
-
+		
 		[Test]
 		public void ToFormattedAddress_CanadaAnd6DigitCodeWithSpace_IsValid() {
 			var a = new Address();
@@ -329,6 +328,29 @@ namespace Main.Tests {
 
 			Assert.AreEqual("Postal Code", a.Code.Label);
 		}
+
+		#region City Line Logic
+
+		[Test]
+		public void ToFormattedAddress_China_CityLineInOutputMatchesSpec19() {
+			var a = new Address();
+			var sampleCity = "City";
+			var sampleState = "State";
+			var sampleCode = "12345";
+			var expectation = String.Format("{0}, {1} {2}", sampleCity, sampleState, sampleCode);
+
+			a.Country = Countries.CHINA;
+			a.City.SetValue(sampleCity);
+			a.State.SetValue(sampleState);
+			a.Code.SetValue(sampleCode);
+			a.Evaluate();
+			var result = a.ToFormattedAddress();
+
+			Assert.IsTrue(result.Contains(expectation.ToUpper()));
+		}
+
+
+		#endregion
 
 	}
 }
