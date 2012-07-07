@@ -314,6 +314,7 @@ namespace Main.Tests {
 
 		[TestCase("US", "City")]
 		[TestCase("AUSTRALIA", "City")]
+		[TestCase("BRAZIL", "Town")]
 		[TestCase("CANADA", "City")]
 		[TestCase("CHINA", "City")]
 		[TestCase("INDIA", "City")]
@@ -328,6 +329,7 @@ namespace Main.Tests {
 
 		[TestCase("US", true)]
 		[TestCase("AUSTRALIA", true)]
+		[TestCase("BRAZIL", true)]
 		[TestCase("CANADA", true)]
 		[TestCase("CHINA", true)]
 		[TestCase("INDIA", true)]
@@ -342,6 +344,7 @@ namespace Main.Tests {
 
 		[TestCase("US", "State")]
 		[TestCase("AUSTRALIA", "State")]
+		[TestCase("BRAZIL", "State")]
 		[TestCase("CANADA", "Province")]
 		[TestCase("CHINA", "Province")]
 		[TestCase("INDIA", "Province")]
@@ -356,6 +359,7 @@ namespace Main.Tests {
 
 		[TestCase("US", true)]
 		[TestCase("AUSTRALIA", true)]
+		[TestCase("BRAZIL", true)]
 		[TestCase("CANADA", true)]
 		[TestCase("CHINA", true)]
 		[TestCase("INDIA", true)]
@@ -384,6 +388,7 @@ namespace Main.Tests {
 
 		[TestCase("US", true)]
 		[TestCase("AUSTRALIA", true)]
+		[TestCase("BRAZIL", true)]
 		[TestCase("CANADA", true)]
 		[TestCase("CHINA", true)]
 		[TestCase("INDIA", true)]
@@ -443,6 +448,24 @@ namespace Main.Tests {
 			var expectation = String.Format("{0} {1} +{2}", sampleCity, sampleState, sampleCode);
 
 			a.Country = Countries.CANADA;
+			a.City.SetValue(sampleCity);
+			a.State.SetValue(sampleState);
+			a.Code.SetValue(sampleCode);
+			a.Evaluate();
+			var result = a.ToFormattedAddress();
+
+			Assert.IsTrue(Regex.IsMatch(result, expectation, RegexOptions.IgnoreCase));
+		}
+
+		[Test]
+		public void ToFormattedAddress_Brazil_CityLineInOutputMatchesSpec22() {
+			var a = new Address();
+			var sampleCity = "City";
+			var sampleState = "State";
+			var sampleCode = "12345";
+			var expectation = String.Format("{2} {0}-{1}", sampleCity, sampleState, sampleCode);
+
+			a.Country = Countries.BRAZIL;
 			a.City.SetValue(sampleCity);
 			a.State.SetValue(sampleState);
 			a.Code.SetValue(sampleCode);

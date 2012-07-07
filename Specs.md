@@ -32,7 +32,7 @@ Most of the rest of the rules shold have tests for input visibility, label wordi
 - 19 When the address country is China or India, the City Line is formatted as: city, province postalcode
 - 20 When the address country is USA or Australia, the City Line is formatted as: city state postalcode
 - 21 When the address country is Canada, the City Line is formatted as: city province postalcode
-- When the address country is Brazil, the City Line is formatted as: postalcode town-state
+- 22 When the address country is Brazil, the City Line is formatted as: postalcode town-state
 - When the address country is Brazil, the postal code is 5+3: NNNNN-NNN
 - When the address country is Mexico, the City Line is formatted as: postalcode town, province
 - When the address country is Italy, the City Line is formatted as: postalcode town (provincia)
