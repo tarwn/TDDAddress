@@ -134,5 +134,16 @@ namespace Main.Tests {
 
 			Assert.IsTrue(result.Contains(sampleValue));
 		}
+
+		[Test]
+		public void ToFormattedAddress_CodeIsProvided_ItAppearsInOutput() {
+			var sampleValue = "12345-6789";
+			var a = new Address();
+
+			a.Code.SetValue(sampleValue);
+			var result = a.ToFormattedAddress();
+
+			Assert.IsTrue(result.Contains(sampleValue));
+		}
 	}
 }
