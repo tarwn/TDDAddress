@@ -101,6 +101,21 @@ namespace Main.Tests {
 		}
 
 		[Test]
+		public void ToFormattedAddress_AddressLine2Provided_ItisFollowedImmediatelyByLineDelimiter() {
+			var sampleValue = "Address Line 1";
+			var sampleValue2 = "Address Line 1";
+			var sampleCity = "My City";
+			var a = new Address();
+
+			a.AddressLine1 = sampleValue;
+			a.AddressLine2 = sampleValue2;
+			a.City.SetValue(sampleCity);
+			var result = a.ToFormattedAddress();
+
+			Assert.IsTrue(result.Contains(sampleValue2 + a.LineDelimiter));
+		}
+
+		[Test]
 		public void ToFormattedAddress_AddressLine2IsProvided_ItAppearsInOutput() {
 			var sampleValue = "Address Line 1";
 			var sampleValue2 = "Address Line 2";
