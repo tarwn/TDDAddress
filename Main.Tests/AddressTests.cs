@@ -314,6 +314,7 @@ namespace Main.Tests {
 
 		[TestCase("US", "City")]
 		[TestCase("AUSTRALIA", "City")]
+		[TestCase("CANADA", "City")]
 		[TestCase("CHINA", "City")]
 		[TestCase("INDIA", "City")]
 		public void CityLabel_PerCountry_HasCorrectName(string country, string expectedLabel) {
@@ -327,6 +328,7 @@ namespace Main.Tests {
 
 		[TestCase("US", true)]
 		[TestCase("AUSTRALIA", true)]
+		[TestCase("CANADA", true)]
 		[TestCase("CHINA", true)]
 		[TestCase("INDIA", true)]
 		public void CityLabel_PerCountry_HasCorrectVisibility(string country, bool expectedVisible) {
@@ -340,6 +342,7 @@ namespace Main.Tests {
 
 		[TestCase("US", "State")]
 		[TestCase("AUSTRALIA", "State")]
+		[TestCase("CANADA", "Province")]
 		[TestCase("CHINA", "Province")]
 		[TestCase("INDIA", "Province")]
 		public void StateLabel_PerCountry_HasCorrectName(string country, string expectedLabel) {
@@ -353,6 +356,7 @@ namespace Main.Tests {
 
 		[TestCase("US", true)]
 		[TestCase("AUSTRALIA", true)]
+		[TestCase("CANADA", true)]
 		[TestCase("CHINA", true)]
 		[TestCase("INDIA", true)]
 		public void StateLabel_PerCountry_HasCorrectVisibility(string country, bool expectedVisible) {
@@ -428,6 +432,24 @@ namespace Main.Tests {
 			var result = a.ToFormattedAddress();
 
 			Assert.IsTrue(Regex.IsMatch(result,expectation, RegexOptions.IgnoreCase));
+		}
+
+		[Test]
+		public void ToFormattedAddress_Canada_CityLineInOutputMatchesSpec21() {
+			var a = new Address();
+			var sampleCity = "City";
+			var sampleState = "State";
+			var sampleCode = "12345";
+			var expectation = String.Format("{0} {1} +{2}", sampleCity, sampleState, sampleCode);
+
+			a.Country = Countries.CANADA;
+			a.City.SetValue(sampleCity);
+			a.State.SetValue(sampleState);
+			a.Code.SetValue(sampleCode);
+			a.Evaluate();
+			var result = a.ToFormattedAddress();
+
+			Assert.IsTrue(Regex.IsMatch(result, expectation, RegexOptions.IgnoreCase));
 		}
 
 		#endregion
