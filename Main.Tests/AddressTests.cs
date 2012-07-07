@@ -313,6 +313,7 @@ namespace Main.Tests {
 		#region City Line Logic
 
 		[TestCase("US", "City")]
+		[TestCase("AUSTRALIA", "City")]
 		[TestCase("CHINA", "City")]
 		[TestCase("INDIA", "City")]
 		public void CityLabel_PerCountry_HasCorrectName(string country, string expectedLabel) {
@@ -325,6 +326,7 @@ namespace Main.Tests {
 		}
 
 		[TestCase("US", true)]
+		[TestCase("AUSTRALIA", true)]
 		[TestCase("CHINA", true)]
 		[TestCase("INDIA", true)]
 		public void CityLabel_PerCountry_HasCorrectVisibility(string country, bool expectedVisible) {
@@ -337,6 +339,7 @@ namespace Main.Tests {
 		}
 
 		[TestCase("US", "State")]
+		[TestCase("AUSTRALIA", "State")]
 		[TestCase("CHINA", "Province")]
 		[TestCase("INDIA", "Province")]
 		public void StateLabel_PerCountry_HasCorrectName(string country, string expectedLabel) {
@@ -349,6 +352,7 @@ namespace Main.Tests {
 		}
 
 		[TestCase("US", true)]
+		[TestCase("AUSTRALIA", true)]
 		[TestCase("CHINA", true)]
 		[TestCase("INDIA", true)]
 		public void StateLabel_PerCountry_HasCorrectVisibility(string country, bool expectedVisible) {
@@ -361,10 +365,11 @@ namespace Main.Tests {
 		}
 
 		[TestCase("US", "ZipCode")]
+		[TestCase("AUSTRALIA", "Postal Code")]
 		[TestCase("CANADA", "Postal Code")]
 		[TestCase("CHINA", "Postal Code")]
 		[TestCase("INDIA", "Postal Code")]
-		public void CodeLabel_CountryIsCanada_ItIsNamedZipCode(string country, string expectedLabel) {
+		public void CodeLabel_PerCountry_ItIsNamedZipCode(string country, string expectedLabel) {
 			var a = new Address();
 
 			a.Country = Countries.SettingsFor(country);
@@ -374,10 +379,11 @@ namespace Main.Tests {
 		}
 
 		[TestCase("US", true)]
+		[TestCase("AUSTRALIA", true)]
 		[TestCase("CANADA", true)]
 		[TestCase("CHINA", true)]
 		[TestCase("INDIA", true)]
-		public void CodeIsVisible_CountryIsCanada_ItIsVisible(string country, bool expectedVisible) {
+		public void CodeIsVisible_PerCountry_ItIsVisible(string country, bool expectedVisible) {
 			var a = new Address();
 
 			a.Country = Countries.SettingsFor(country);
