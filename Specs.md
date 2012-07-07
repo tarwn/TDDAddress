@@ -16,7 +16,7 @@ Requirements:
 6- Formatted address output does not have a trailing end of line delimiter (carriage return)
 7- When an Address Line 2 value is provided, it is in the formatted output
 11- When an Address Line 2 value is provided, an end of line delimiter immediately follows
-- When an Address Line 1 is provided with a later value and Address Line 2 value is not provided, address line 1 will be followed by only one occurrence of end of line delimiter (carriage return)
+12- When an Address Line 1 is provided with a later value and Address Line 2 value is not provided, address line 1 will be followed by only one occurrence of end of line delimiter (carriage return)
 8- When a City is provided, it is in the formatted output
 9- When a State/Province is provided, it is in the formatted output
 10- When a Postal Code is provided, it in the formatted output

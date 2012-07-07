@@ -103,7 +103,7 @@ namespace Main.Tests {
 		[Test]
 		public void ToFormattedAddress_AddressLine2Provided_ItisFollowedImmediatelyByLineDelimiter() {
 			var sampleValue = "Address Line 1";
-			var sampleValue2 = "Address Line 1";
+			var sampleValue2 = "Address Line 2";
 			var sampleCity = "My City";
 			var a = new Address();
 
@@ -113,6 +113,19 @@ namespace Main.Tests {
 			var result = a.ToFormattedAddress();
 
 			Assert.IsTrue(result.Contains(sampleValue2 + a.LineDelimiter));
+		}
+
+		[Test]
+		public void ToFormattedAddress_AddressLine1WithotuAddressLIne2_HasOnlyOneFollowingLineDelimiter() {
+			var sampleValue = "Address Line 1";
+			var sampleCity = "My City";
+			var a = new Address();
+
+			a.AddressLine1 = sampleValue;
+			a.City.SetValue(sampleCity);
+			var result = a.ToFormattedAddress();
+
+			Assert.IsFalse(result.Contains(sampleValue + a.LineDelimiter + a.LineDelimiter));
 		}
 
 		[Test]
