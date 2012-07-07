@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressTDD", "AddressTDD\AddressTDD.csproj", "{ECE7CD8A-5000-4D01-8BF0-5D096296A578}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Main.Tests", "Main.Tests\Main.Tests.csproj", "{BC7CF627-36C6-4804-9370-5057846EFCDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Main", "Main\Main.csproj", "{C0F99312-8F43-4B13-A93C-5D9CC69F1BDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +11,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{ECE7CD8A-5000-4D01-8BF0-5D096296A578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ECE7CD8A-5000-4D01-8BF0-5D096296A578}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ECE7CD8A-5000-4D01-8BF0-5D096296A578}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ECE7CD8A-5000-4D01-8BF0-5D096296A578}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC7CF627-36C6-4804-9370-5057846EFCDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC7CF627-36C6-4804-9370-5057846EFCDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC7CF627-36C6-4804-9370-5057846EFCDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC7CF627-36C6-4804-9370-5057846EFCDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0F99312-8F43-4B13-A93C-5D9CC69F1BDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0F99312-8F43-4B13-A93C-5D9CC69F1BDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0F99312-8F43-4B13-A93C-5D9CC69F1BDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0F99312-8F43-4B13-A93C-5D9CC69F1BDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
