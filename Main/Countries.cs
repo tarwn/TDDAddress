@@ -6,13 +6,17 @@ using System.Text;
 namespace Main {
 	public static class Countries {
 		public static Country US =		new Country("US", zipCodePattern: @"\d{5}(-?\d{4})?", zipCodeName: "ZipCode");
-		public static Country CANADA = new Country("CA", zipCodePattern: @"[A-Z]\d[A-Z] ?\d[A-Z]\d", zipCodeName: "Postal Code", searchTerms: new string[] { "CANADA" });
-		public static Country CHINA =	new Country("CN", zipCodePattern: @".+", zipCodeName: "Postal Code", stateName: "Province", searchTerms: new string[]{ "CHINA" });
+
+		public static Country CANADA =	new Country("CA", zipCodePattern: @"[A-Z]\d[A-Z] ?\d[A-Z]\d", zipCodeName: "Postal Code", searchTerms: new string[] { "CANADA" });
+		public static Country CHINA =	new Country("CN", zipCodePattern: @".+", zipCodeName: "Postal Code", stateName: "Province", searchTerms: new string[] { "CHINA" });
+		public static Country INDIA =	new Country("IN", zipCodePattern: @".+", zipCodeName: "Postal Code", stateName: "Province", searchTerms: new string[] { "INDIA" });
 
 		public static List<Country> _countries = new List<Country>() { 
 			US,
+
 			CANADA,
-			CHINA
+			CHINA,
+			INDIA,
 		};
 
 		public static Country SettingsFor(string countryName)

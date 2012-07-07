@@ -313,6 +313,7 @@ namespace Main.Tests {
 		#region City Line Logic
 
 		[TestCase("CHINA", "City")]
+		[TestCase("INDIA", "City")]
 		public void CityLabel_PerCountry_HasCorrectName(string country, string expectedLabel) {
 			var a = new Address();
 
@@ -323,6 +324,7 @@ namespace Main.Tests {
 		}
 
 		[TestCase("CHINA", true)]
+		[TestCase("INDIA", true)]
 		public void CityLabel_PerCountry_HasCorrectVisibility(string country, bool expectedVisible) {
 			var a = new Address();
 
@@ -333,6 +335,7 @@ namespace Main.Tests {
 		}
 
 		[TestCase("CHINA", "Province")]
+		[TestCase("INDIA", "Province")]
 		public void StateLabel_PerCountry_HasCorrectName(string country, string expectedLabel) {
 			var a = new Address();
 
@@ -343,6 +346,7 @@ namespace Main.Tests {
 		}
 
 		[TestCase("CHINA", true)]
+		[TestCase("INDIA", true)]
 		public void StateLabel_PerCountry_HasCorrectVisibility(string country, bool expectedVisible) {
 			var a = new Address();
 
@@ -354,6 +358,7 @@ namespace Main.Tests {
 
 		[TestCase("CANADA", "Postal Code")]
 		[TestCase("CHINA", "Postal Code")]
+		[TestCase("INDIA", "Postal Code")]
 		public void CodeLabel_CountryIsCanada_ItIsNamedZipCode(string country, string expectedLabel) {
 			var a = new Address();
 
@@ -365,6 +370,7 @@ namespace Main.Tests {
 
 		[TestCase("CANADA", true)]
 		[TestCase("CHINA", true)]
+		[TestCase("INDIA", true)]
 		public void CodeIsVisible_CountryIsCanada_ItIsVisible(string country, bool expectedVisible) {
 			var a = new Address();
 
@@ -374,15 +380,16 @@ namespace Main.Tests {
 			Assert.AreEqual(expectedVisible, a.Code.IsVisible);
 		}
 
-		[Test]
-		public void ToFormattedAddress_China_CityLineInOutputMatchesSpec19() {
+		[TestCase("CHINA")]
+		[TestCase("INDIA")]
+		public void ToFormattedAddress_ChinaOrIndia_CityLineInOutputMatchesSpec19(string country) {
 			var a = new Address();
 			var sampleCity = "City";
 			var sampleState = "State";
 			var sampleCode = "12345";
 			var expectation = String.Format("{0}, {1} {2}", sampleCity, sampleState, sampleCode);
 
-			a.Country = Countries.CHINA;
+			a.Country = Countries.SettingsFor(country);
 			a.City.SetValue(sampleCity);
 			a.State.SetValue(sampleState);
 			a.Code.SetValue(sampleCode);
