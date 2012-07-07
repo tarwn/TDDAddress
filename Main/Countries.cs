@@ -8,7 +8,7 @@ namespace Main {
 		public static Country US =		new Country("US", zipCodePattern: @"\d{5}(-?\d{4})?", cityLine: "c s p", zipCodeName: "ZipCode");
 
 		public static Country AUSTRALIA = new Country("AU", zipCodePattern: @".+", cityLine: "c s p", zipCodeName: "Postal Code", searchTerms: new string[] { "AUSTRALIA" });
-		public static Country BRAZIL = new Country("BR", zipCodePattern: @".+", cityLine: "p c-s", zipCodeName: "Postal Code", cityName: "Town", searchTerms: new string[] { "BRAZIL" });
+		public static Country BRAZIL = new Country("BR", zipCodePattern: @"\d{5}-\d{3}", cityLine: "p c-s", zipCodeName: "Postal Code", cityName: "Town", searchTerms: new string[] { "BRAZIL" });
 		public static Country CANADA = new Country("CA", zipCodePattern: @"[A-Z]\d[A-Z] ?\d[A-Z]\d", cityLine: "c s p", zipCodeName: "Postal Code", stateName: "Province", searchTerms: new string[] { "CANADA" });
 		public static Country CHINA =	new Country("CN", zipCodePattern: @".+", zipCodeName: "Postal Code", stateName: "Province", searchTerms: new string[] { "CHINA" });
 		public static Country INDIA =	new Country("IN", zipCodePattern: @".+", zipCodeName: "Postal Code", stateName: "Province", searchTerms: new string[] { "INDIA" });

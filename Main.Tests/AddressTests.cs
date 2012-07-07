@@ -291,6 +291,28 @@ namespace Main.Tests {
 			Assert.IsFalse(a.Code.IsValid);
 		}
 
+		[Test]
+		public void ToFormattedAddress_BrazilWithValidCode_IsValid() {
+			var a = new Address();
+
+			a.Country = Countries.BRAZIL;
+			a.Code.SetValue("12345-000");
+			a.Evaluate();
+
+			Assert.IsTrue(a.Code.IsValid);
+		}
+
+		[Test]
+		public void ToFormattedAddress_BrazilWithInalidCode_IsNotValid() {
+			var a = new Address();
+
+			a.Country = Countries.BRAZIL;
+			a.Code.SetValue("12345");
+			a.Evaluate();
+
+			Assert.IsFalse(a.Code.IsValid);
+		}
+
 
 		#endregion
 

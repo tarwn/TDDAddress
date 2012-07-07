@@ -76,7 +76,7 @@ namespace Main {
 
 		private bool ValidateCodeForCountry(string code) {
 			return !Country.HasZipCode
-				|| Regex.IsMatch(code, Country.ZipCodePattern);
+				|| Regex.IsMatch(code, "^" + Country.ZipCodePattern + "$");
 		}
 
 	}
