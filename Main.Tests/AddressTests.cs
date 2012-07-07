@@ -257,26 +257,6 @@ namespace Main.Tests {
 		}
 
 		[Test]
-		public void CodeIsVisible_CountryIsUS_ItIsVisible() {
-			var a = new Address();
-
-			a.Country = Countries.US;
-			a.Evaluate();
-
-			Assert.IsTrue(a.Code.IsVisible);
-		}
-
-		[Test]
-		public void CodeLabel_CountryIsUS_ItIsNamedZipCode() {
-			var a = new Address();
-
-			a.Country = Countries.US;
-			a.Evaluate();
-
-			Assert.AreEqual("ZipCode", a.Code.Label);
-		}
-
-		[Test]
 		public void ToFormattedAddress_CanadaAnd6DigitCodeWithSpace_IsValid() {
 			var a = new Address();
 
