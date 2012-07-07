@@ -65,7 +65,7 @@ namespace Main {
 													 .Replace("s", "{1}")
 													 .Replace("p", "{2}");
 
-			return LineDelimiter + String.Format(pattern, City.Value, State.Value, Code.Value);
+			return LineDelimiter + String.Format(pattern, City, State, Code);
 		}
 
 		private bool ValidateCodeForCountry(string code) {
@@ -99,6 +99,10 @@ namespace Main {
 			Value = "";
 			IsVisible = true;
 			UpdateValidity();
+		}
+
+		public override string ToString() {
+			return Value;
 		}
 	}
 
