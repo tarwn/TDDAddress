@@ -41,7 +41,7 @@ namespace Main {
 		public string Value { get; private set; }
 		public string Label { get; set; }
 		public bool IsVisible { get; private set; }
-		public bool IsValid { get; private set; }
+		public bool IsValid { get; protected set; }
 
 		public void SetValue(string value) {
 			Value = value;
@@ -72,7 +72,7 @@ namespace Main {
 		public Func<string, bool> Validate { get; set; }
 
 		protected override void UpdateValidity() {
-			IsValid = !IsVisible || (ValidatedInput != null && Validate(Value));
+			IsValid = !IsVisible || (Validate != null && Validate(Value));
 		}
 
 	}
