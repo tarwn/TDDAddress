@@ -173,5 +173,16 @@ namespace Main.Tests {
 
 			Assert.IsTrue(result.Contains(sampleValue));
 		}
+
+		[Test]
+		public void ToFormattedAddress_SourceAndtargetAreBothUS_CountryIsNotInOutput() {
+			var a = new Address();
+
+			a.Country = Countries.US;
+			var result = a.ToFormattedAddress();
+
+			Assert.IsFalse(result.EndsWith(Countries.US));
+		}
+
 	}
 }
