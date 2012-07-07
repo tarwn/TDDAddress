@@ -312,6 +312,7 @@ namespace Main.Tests {
 
 		#region City Line Logic
 
+		[TestCase("US", "City")]
 		[TestCase("CHINA", "City")]
 		[TestCase("INDIA", "City")]
 		public void CityLabel_PerCountry_HasCorrectName(string country, string expectedLabel) {
@@ -323,6 +324,7 @@ namespace Main.Tests {
 			Assert.AreEqual(expectedLabel, a.City.Label);
 		}
 
+		[TestCase("US", true)]
 		[TestCase("CHINA", true)]
 		[TestCase("INDIA", true)]
 		public void CityLabel_PerCountry_HasCorrectVisibility(string country, bool expectedVisible) {
@@ -334,6 +336,7 @@ namespace Main.Tests {
 			Assert.AreEqual(expectedVisible, a.City.IsVisible);
 		}
 
+		[TestCase("US", "State")]
 		[TestCase("CHINA", "Province")]
 		[TestCase("INDIA", "Province")]
 		public void StateLabel_PerCountry_HasCorrectName(string country, string expectedLabel) {
@@ -345,6 +348,7 @@ namespace Main.Tests {
 			Assert.AreEqual(expectedLabel, a.State.Label);
 		}
 
+		[TestCase("US", true)]
 		[TestCase("CHINA", true)]
 		[TestCase("INDIA", true)]
 		public void StateLabel_PerCountry_HasCorrectVisibility(string country, bool expectedVisible) {
@@ -356,6 +360,7 @@ namespace Main.Tests {
 			Assert.AreEqual(expectedVisible, a.State.IsVisible);
 		}
 
+		[TestCase("US", "ZipCode")]
 		[TestCase("CANADA", "Postal Code")]
 		[TestCase("CHINA", "Postal Code")]
 		[TestCase("INDIA", "Postal Code")]
@@ -368,6 +373,7 @@ namespace Main.Tests {
 			Assert.AreEqual(expectedLabel, a.Code.Label);
 		}
 
+		[TestCase("US", true)]
 		[TestCase("CANADA", true)]
 		[TestCase("CHINA", true)]
 		[TestCase("INDIA", true)]
@@ -397,6 +403,24 @@ namespace Main.Tests {
 			var result = a.ToFormattedAddress();
 
 			Assert.IsTrue(result.Contains(expectation.ToUpper()));
+		}
+
+		[TestCase("US")]
+		public void ToFormattedAddress_USorAustralia_CityLineInOutputMatchesSpec20(string country) {
+			var a = new Address();
+			var sampleCity = "City";
+			var sampleState = "State";
+			var sampleCode = "12345";
+			var expectation = String.Format("{0} {1} +{2}", sampleCity, sampleState, sampleCode);
+
+			a.Country = Countries.SettingsFor(country);
+			a.City.SetValue(sampleCity);
+			a.State.SetValue(sampleState);
+			a.Code.SetValue(sampleCode);
+			a.Evaluate();
+			var result = a.ToFormattedAddress();
+
+			Assert.IsTrue(Regex.IsMatch(result,expectation, RegexOptions.IgnoreCase));
 		}
 
 		#endregion

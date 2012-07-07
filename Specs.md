@@ -30,7 +30,7 @@ Most of the rest of the rules shold have tests for input visibility, label wordi
 - 17 When the address country is USA, the zip code is 5 digits (NNNNN) or 5-4 (NNNNN-NNNN)
 - 18 When the address country is Canada, the postal code is 6 characters with a space (A0A 0A0)
 - 19 When the address country is China or India, the City Line is formatted as: city, province postalcode
-- When the address country is USA or Australia, the City Line is formatted as: city state postalcode
+- 20 When the address country is USA or Australia, the City Line is formatted as: city state postalcode
 - When the address country is Canada, the City Line is formatted as: city province postalcode
 - When the address country is Brazil, the City Line is formatted as: postalcode town-province
 - When the address country is Mexico, the City Line is formatted as: postalcode town, province
