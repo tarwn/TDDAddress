@@ -113,5 +113,16 @@ namespace Main.Tests {
 			Assert.IsTrue(result.Contains(sampleValue2));
 		}
 
+		[Test]
+		public void ToFormattedAddress_CityIsProvided_ItAppearsInOutput() {
+			var sampleValue = "AwesomeCityName";
+			var a = new Address();
+
+			a.City.SetValue(sampleValue);
+			var result = a.ToFormattedAddress();
+
+			Assert.IsTrue(result.Contains(sampleValue));
+		}
+
 	}
 }

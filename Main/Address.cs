@@ -47,7 +47,17 @@ namespace Main {
 			if(!String.IsNullOrWhiteSpace(AddressLine2))
 				result.Append(LineDelimiter + AddressLine2);
 
+			result.Append(GenerateCityLine());
+
 			return result.ToString();
+		}
+
+		private string GenerateCityLine() {
+			if (!String.IsNullOrWhiteSpace(City.Value)) {
+				return LineDelimiter + City.Value;
+			}
+
+			return "";
 		}
 
 	}
