@@ -61,7 +61,20 @@ namespace Main.Tests {
 			a.AddressLine1 = sampleAddressLine;
 			var result = a.ToFormattedAddress();
 
-			Assert.AreEqual(result, sampleRecipient + a.LineDelimiter + sampleAddressLine);
+			Assert.IsTrue(result.StartsWith(sampleRecipient + a.LineDelimiter + sampleAddressLine));
+		}
+
+		[Test]
+		public void ToFormattedAddress_AddressLine1AndLaterValueIsProvided_AddressLine1FollowedByLineDelimiter() {
+			var sampleAddressLine = "Address Line 1";
+			var sampleAddressLine2 = "Address Line 2";
+			var a = new Address();
+
+			a.AddressLine1 = sampleAddressLine;
+			a.AddressLine2 = sampleAddressLine2;
+			var result = a.ToFormattedAddress();
+
+			Assert.IsTrue(result.Contains(a.AddressLine1 + a.LineDelimiter));
 		}
 	}
 }
