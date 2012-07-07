@@ -33,7 +33,7 @@ namespace Main {
 		}
 
 		public string ToFormattedAddress() {
-			return "";
+			return AddressLine1;
 		}
 	}
 
