@@ -21,6 +21,7 @@ namespace Main {
 				Label = "Zip/Postal Code",
 				Validate = (s) => s.Length > 0
 			};
+			Country = Countries.US;
 		}
 
 		/// <summary>
