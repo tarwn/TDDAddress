@@ -515,7 +515,7 @@ namespace Main.Tests {
 		}
 
 		[Test]
-		public void ToFormattedAddress_Mexico_CityLineInOutputMatchesSpec23() {
+		public void ToFormattedAddress_Mexico_CityLineInOutputMatchesSpec24() {
 			var a = new Address();
 			var sampleCity = "City";
 			var sampleState = "State";
