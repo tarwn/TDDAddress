@@ -7,12 +7,12 @@ namespace Main {
 	public static class Countries {
 		public static Country US =		new Country("US", zipCodePattern: @"\d{5}(-?\d{4})?", cityLine: "c s p", zipCodeName: "ZipCode");
 
-		public static Country AUSTRALIA = new Country("AU", zipCodePattern: @".+", cityLine: "c s p", zipCodeName: "Postal Code", searchTerms: new string[] { "AUSTRALIA" });
-		public static Country BRAZIL = new Country("BR", zipCodePattern: @"\d{5}-\d{3}", cityLine: "p c-s", zipCodeName: "Postal Code", cityName: "Town", searchTerms: new string[] { "BRAZIL" });
-		public static Country CANADA = new Country("CA", zipCodePattern: @"[A-Z]\d[A-Z] ?\d[A-Z]\d", cityLine: "c s p", zipCodeName: "Postal Code", stateName: "Province", searchTerms: new string[] { "CANADA" });
-		public static Country CHINA =	new Country("CN", zipCodePattern: @".+", zipCodeName: "Postal Code", stateName: "Province", searchTerms: new string[] { "CHINA" });
-		public static Country INDIA = new Country("IN", zipCodePattern: @".+", zipCodeName: "Postal Code", stateName: "Province", searchTerms: new string[] { "INDIA" });
-		public static Country MEXICO = new Country("MX", zipCodePattern: @".+", cityLine: "p c, s",  zipCodeName: "Postal Code", searchTerms: new string[] { "MEXICO" });
+		public static Country AUSTRALIA = new Country("AU", zipCodePattern: @".+", cityLine: "c s p", zipCodeName: "Postal Code", fullName: "AUSTRALIA" );
+		public static Country BRAZIL = new Country("BR", zipCodePattern: @"\d{5}-\d{3}", cityLine: "p c-s", zipCodeName: "Postal Code", cityName: "Town", fullName: "BRAZIL");
+		public static Country CANADA = new Country("CA", zipCodePattern: @"[A-Z]\d[A-Z] ?\d[A-Z]\d", cityLine: "c s p", zipCodeName: "Postal Code", stateName: "Province", fullName: "CANADA");
+		public static Country CHINA = new Country("CN", zipCodePattern: @".+", zipCodeName: "Postal Code", stateName: "Province", fullName: "CHINA");
+		public static Country INDIA = new Country("IN", zipCodePattern: @".+", zipCodeName: "Postal Code", stateName: "Province", fullName: "INDIA");
+		public static Country MEXICO = new Country("MX", zipCodePattern: @".+", cityLine: "p c, s", zipCodeName: "Postal Code", fullName: "MEXICO");
 
 		public static List<Country> _countries = new List<Country>() { 
 			US,
@@ -26,7 +26,7 @@ namespace Main {
 
 		public static Country SettingsFor(string countryName)
 		{
-			var country = _countries.Where(c => c.CountryCode == countryName || c.SearchTerms.Contains(countryName)).FirstOrDefault();
+			var country = _countries.Where(c => c.CountryCode == countryName || c.FullName == countryName).FirstOrDefault();
 			if (country == null)
 				throw new ArgumentException("Specific country is not a valid option");
 
@@ -48,10 +48,10 @@ namespace Main {
 		public string ZipCodePattern { get; private set; }
 		public string ZipCodeName { get; private set; }
 
-		public List<string> SearchTerms { get; private set; }
+		public string FullName { get; private set; }
 
-		public Country(string code, string cityLine = "c, s p", string cityName = "City", string stateName = "State", 
-						string zipCodePattern = "", string zipCodeName = "", string [] searchTerms = null) {
+		public Country(string code, string cityLine = "c, s p", string cityName = "City", string stateName = "State",
+						string zipCodePattern = "", string zipCodeName = "", string fullName = "") {
 			CountryCode = code;
 			CityName = cityName;
 			ZipCodePattern = zipCodePattern;
@@ -59,9 +59,7 @@ namespace Main {
 			CityLineTemplate = cityLine;
 			StateName = stateName;
 
-			SearchTerms = new List<string>();
-			if (searchTerms != null)
-				SearchTerms.AddRange(searchTerms);
+			FullName = fullName;
 		}
 	}
 }
