@@ -313,6 +313,27 @@ namespace Main.Tests {
 			Assert.IsFalse(a.Code.IsValid);
 		}
 
+		[Test]
+		public void ToFormattedAddress_MexicoWithValidCode_IsValid() {
+			var a = new Address();
+
+			a.Country = Countries.MEXICO;
+			a.Code.SetValue("12345");
+			a.Evaluate();
+
+			Assert.IsTrue(a.Code.IsValid);
+		}
+
+		[Test]
+		public void ToFormattedAddress_MexicoWithInvalidCode_IsNotValid() {
+			var a = new Address();
+
+			a.Country = Countries.MEXICO;
+			a.Code.SetValue("1abc45");
+			a.Evaluate();
+
+			Assert.IsFalse(a.Code.IsValid);
+		}
 
 		#endregion
 
