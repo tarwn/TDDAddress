@@ -27,22 +27,37 @@ Requirements:
 
 Most of the rest of the rules shold have tests for input visibility, label wording, and verification of the output. So in the the city line rules there should be tests for the visibility of each of the mentioned fields, validation that the relevant labels show the correct text, and tests against the formatted output.
 
-- 17 When the address country is USA, the zip code is 5 digits (NNNNN) or 5-4 (NNNNN-NNNN)
-- 18 When the address country is Canada, the postal code is 6 characters with a space (A0A 0A0)
-- 19 When the address country is China or India, the City Line is formatted as: city, province postalcode
-- 20 When the address country is USA or Australia, the City Line is formatted as: city state postalcode
-- 21 When the address country is Canada, the City Line is formatted as: city province postalcode
-- 22 When the address country is Brazil, the City Line is formatted as: postalcode town-state
-- 23 When the address country is Brazil, the postal code is 5+3: NNNNN-NNN
-- 24 When the address country is Mexico, the City Line is formatted as: postalcode town, state
-- 25 When the address country is Mexico, the postal code is a 5 digit number: NNNNN
-- When the address country is Italy, the City Line is formatted as: postalcode town (provincia)
-- When the address country is New Zealand, Thailand, Japan, Singapore, the City Line is formatted as: town postalcode
-- When the address country is Ireland and the city is not Dublin, the City Line is formatted as: town, Co. county
-- When the address country is Ireland and the city is not Dublin and the county begins with Co., the City line only contains one Co. before the county name
-- When the address country is Ireland and the city is Dublin, the City Line is formatted as: town postalzone
-- When the address country is UK, Russia, Ukraine, Kazakhstan, Hungary, the City Line is formatted as two lines: town \n postalcode
-- When the address country is Ecuador, the City Line is formatted as two lines: postalcode \n town
-- When the country is Hong Kong, Syria, Iraq, the City Line is formatted as: town
-- When the country is not in the above list, the City Line is formatted as: postalcode town
-- When the country is US, Canada, or Australia, the City Line has a minimum of two spaces bwteen the state/province and postalcode
+- 17 When the address country is USA (US), the zip code is 5 digits (NNNNN) or 5-4 (NNNNN-NNNN)
+- 18 When the address country is Canada (CA), the postal code is 6 characters with a space (A0A 0A0)
+- 19 When the address country is China (CN) or India (IN), the City Line is formatted as: city, province postalcode
+- 20 When the address country is USA (US) or Australia (AU), the City Line is formatted as: city state postalcode
+- 21 When the address country is Canada (CA), the City Line is formatted as: city province postalcode
+- 22 When the address country is Brazil (BR), the City Line is formatted as: postalcode town-state
+- 23When the address country is Brazil (BR), the postal code is 5+3: NNNNN-NNN
+- 24 When the address country is Mexico (MX), the City Line is formatted as: postalcode town, state
+- 25 When the address country is Mexico (MX), the postal code is a 5 digit number: NNNNN
+- When the address country is Italy (IT), the City Line is formatted as: postalcode town (provincia)
+- When the address country is Italy (IT), the postal code is five numbers prefixed with "IT-": IT-NNNNN
+- When the address country is Italy (IT), the provincia is a 2 letter abbreviation
+- When the address country is New Zealand (NZ), Thailand (TH) the City Line is formatted as: town postalcode
+- When the address country is New Zealand (NZ), the postal code is a 4 digit number: NNNN
+- When the address country is Thailand (TH), the postal code is a 5 digit number: NNNNN
+- When the address country is Singapore (SG), the postal code is 6 numbers: NNNNNN
+- When the address country is Singapore (SG), the city is "Singapore"
+- When the address country is Ireland (IE) and the city is not Dublin, the City Line is formatted as: town, Co. county
+- When the address country is Ireland (IE) and the city is not Dublin and the entered county begins with Co., the City line only contains one Co. before the county name
+- When the address country is Ireland (IE) and the city is Dublin, the City Line is formatted as: town postalzone
+- When the address country is Ireland (IE) and the city is Dublin, the postal zone is a number between 1 and 24 or 6W
+- When the address country is Hungary (HU), the City Line is formatted as two lines: town \n postalcode
+- When the address country is Hungary (HU), the postal code is a 4 digit number: NNNN
+- When the address country is Ecuador (EC), the City Line is formatted as two lines: postalcode \n town
+- When the address country is Ecuador (EC), the postal code is a letter, 4 numbers, and a letter: LNNNNL
+- When the country is Hong Kong (HK) or Iraq (IQ) the City Line is formatted as: town
+- When the country is not in the above list, a default City Line format is: postalcode town
+- When the country is US, Canada, or Australia, the City Line has a minimum of two spaces between the state/province and postalcode
+
+Extra Credit: Japan, UK, Former Soviet Union
+
+The system should now not only support a lot of common countries but also be flexible enough that implementing additional specs should be a matter of just a few minutes.
+
+Note: Obviously the next step would be to implement lookup tables for valid states/provinces/regions but most address inputs I have seen in the US rarely have more than US and Canada lookups.
