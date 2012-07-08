@@ -356,8 +356,7 @@ namespace Main.Tests {
 
 			Assert.IsFalse(a.Code.IsValid);
 		}
-
-
+		
 		[Test]
 		public void ToFormattedAddress_NewZealandWithValidCode_IsValid() {
 			var a = new Address();
@@ -375,6 +374,29 @@ namespace Main.Tests {
 
 			a.Country = Countries.NEWZEALAND;
 			a.Code.SetValue("12345");
+			a.Evaluate();
+
+			Assert.IsFalse(a.Code.IsValid);
+		}
+
+
+		[Test]
+		public void ToFormattedAddress_ThailandWithValidCode_IsValid() {
+			var a = new Address();
+
+			a.Country = Countries.THAILAND;
+			a.Code.SetValue("12345");
+			a.Evaluate();
+
+			Assert.IsTrue(a.Code.IsValid);
+		}
+
+		[Test]
+		public void ToFormattedAddress_ThailandWithInvalidCode_IsNotValid() {
+			var a = new Address();
+
+			a.Country = Countries.THAILAND;
+			a.Code.SetValue("1234");
 			a.Evaluate();
 
 			Assert.IsFalse(a.Code.IsValid);
