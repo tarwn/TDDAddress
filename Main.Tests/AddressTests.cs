@@ -303,7 +303,7 @@ namespace Main.Tests {
 		}
 
 		[Test]
-		public void ToFormattedAddress_BrazilWithInalidCode_IsNotValid() {
+		public void ToFormattedAddress_BrazilWithInvalidCode_IsNotValid() {
 			var a = new Address();
 
 			a.Country = Countries.BRAZIL;
