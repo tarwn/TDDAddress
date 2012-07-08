@@ -379,7 +379,6 @@ namespace Main.Tests {
 			Assert.IsFalse(a.Code.IsValid);
 		}
 
-
 		[Test]
 		public void ToFormattedAddress_ThailandWithValidCode_IsValid() {
 			var a = new Address();
@@ -401,6 +400,30 @@ namespace Main.Tests {
 
 			Assert.IsFalse(a.Code.IsValid);
 		}
+
+
+		[Test]
+		public void ToFormattedAddress_SingaporeWithValidCode_IsValid() {
+			var a = new Address();
+
+			a.Country = Countries.SINGAPORE;
+			a.Code.SetValue("123456");
+			a.Evaluate();
+
+			Assert.IsTrue(a.Code.IsValid);
+		}
+
+		[Test]
+		public void ToFormattedAddress_SingaporeWithInvalidCode_IsNotValid() {
+			var a = new Address();
+
+			a.Country = Countries.SINGAPORE;
+			a.Code.SetValue("12345");
+			a.Evaluate();
+
+			Assert.IsFalse(a.Code.IsValid);
+		}
+
 		#endregion
 
 		#region City Line Logic

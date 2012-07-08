@@ -15,7 +15,7 @@ namespace Main {
 		public static Country ITALY = new Country("IT", zipCodePattern: @"IT-\d{5}", cityLine: "[p] [c] ([s])", zipCodeName: "Postal Code", stateName: "Provincia", cityName: "Town", fullName: "ITALY");
 		public static Country MEXICO = new Country("MX", zipCodePattern: @"\d{5}", cityLine: "[p] [c], [s]", zipCodeName: "Postal Code", fullName: "MEXICO");
 		public static Country NEWZEALAND = new Country("NZ", zipCodePattern: @"\d{4}", cityLine: "[c] [p]", zipCodeName: "Postal Code", cityName: "Town", fullName: "NEW ZEALAND");
-		public static Country SINGAPORE = new Country("SG", zipCodePattern: @".+", cityLine: "Singapore [p]", zipCodeName: "Postal Code", fullName: "SINGAPORE");
+		public static Country SINGAPORE = new Country("SG", zipCodePattern: @"\d{6}", cityLine: "Singapore [p]", zipCodeName: "Postal Code", fullName: "SINGAPORE");
 		public static Country THAILAND = new Country("TH", zipCodePattern: @"\d{5}", cityLine: "[c] [p]", zipCodeName: "Postal Code", cityName: "Town", fullName: "THAILAND");
 
 		public static List<Country> _countries = new List<Country>() { 
