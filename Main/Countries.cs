@@ -11,7 +11,8 @@ namespace Main {
 		public static Country BRAZIL = new Country("BR", zipCodePattern: @"\d{5}-\d{3}", cityLine: "p c-s", zipCodeName: "Postal Code", cityName: "Town", searchTerms: new string[] { "BRAZIL" });
 		public static Country CANADA = new Country("CA", zipCodePattern: @"[A-Z]\d[A-Z] ?\d[A-Z]\d", cityLine: "c s p", zipCodeName: "Postal Code", stateName: "Province", searchTerms: new string[] { "CANADA" });
 		public static Country CHINA =	new Country("CN", zipCodePattern: @".+", zipCodeName: "Postal Code", stateName: "Province", searchTerms: new string[] { "CHINA" });
-		public static Country INDIA =	new Country("IN", zipCodePattern: @".+", zipCodeName: "Postal Code", stateName: "Province", searchTerms: new string[] { "INDIA" });
+		public static Country INDIA = new Country("IN", zipCodePattern: @".+", zipCodeName: "Postal Code", stateName: "Province", searchTerms: new string[] { "INDIA" });
+		public static Country MEXICO = new Country("MX", zipCodePattern: @".+", cityLine: "p c, s",  zipCodeName: "Postal Code", searchTerms: new string[] { "MEXICO" });
 
 		public static List<Country> _countries = new List<Country>() { 
 			US,
@@ -20,6 +21,7 @@ namespace Main {
 			CANADA,
 			CHINA,
 			INDIA,
+			MEXICO,
 		};
 
 		public static Country SettingsFor(string countryName)
