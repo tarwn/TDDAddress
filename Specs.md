@@ -44,6 +44,7 @@ Most of the rest of the rules shold have tests for input visibility, label wordi
 - When the address country is Thailand (TH), the postal code is a 5 digit number: NNNNN
 - When the address country is Singapore (SG), the postal code is 6 numbers: NNNNNN
 - When the address country is Singapore (SG), the city is "Singapore"
+- When the address country is Singapore (SG), the cityline format is city postalcode
 - When the address country is Ireland (IE) and the city is not Dublin, the City Line is formatted as: town, Co. county
 - When the address country is Ireland (IE) and the city is not Dublin and the entered county begins with Co., the City line only contains one Co. before the county name
 - When the address country is Ireland (IE) and the city is Dublin, the City Line is formatted as: town postalzone
