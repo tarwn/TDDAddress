@@ -40,7 +40,7 @@ Most of the rest of the rules shold have tests for input visibility, label wordi
 - 27 When the address country is Italy (IT), the postal code is five numbers prefixed with "IT-": IT-NNNNN
 - When the address country is Italy (IT), the provincia is a 2 letter abbreviation
 - 28 When the address country is New Zealand (NZ), Thailand (TH) the City Line is formatted as: town postalcode
-- When the address country is New Zealand (NZ), the postal code is a 4 digit number: NNNN
+- 29 When the address country is New Zealand (NZ), the postal code is a 4 digit number: NNNN
 - When the address country is Thailand (TH), the postal code is a 5 digit number: NNNNN
 - When the address country is Singapore (SG), the postal code is 6 numbers: NNNNNN
 - When the address country is Singapore (SG), the city is "Singapore"

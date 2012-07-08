@@ -357,6 +357,28 @@ namespace Main.Tests {
 			Assert.IsFalse(a.Code.IsValid);
 		}
 
+
+		[Test]
+		public void ToFormattedAddress_NewZealandWithValidCode_IsValid() {
+			var a = new Address();
+
+			a.Country = Countries.NEWZEALAND;
+			a.Code.SetValue("1234");
+			a.Evaluate();
+
+			Assert.IsTrue(a.Code.IsValid);
+		}
+
+		[Test]
+		public void ToFormattedAddress_NewZealandWithInvalidCode_IsNotValid() {
+			var a = new Address();
+
+			a.Country = Countries.NEWZEALAND;
+			a.Code.SetValue("12345");
+			a.Evaluate();
+
+			Assert.IsFalse(a.Code.IsValid);
+		}
 		#endregion
 
 		#region City Line Logic
