@@ -335,6 +335,28 @@ namespace Main.Tests {
 			Assert.IsFalse(a.Code.IsValid);
 		}
 
+		[Test]
+		public void ToFormattedAddress_ItalyWithValidCode_IsValid() {
+			var a = new Address();
+
+			a.Country = Countries.ITALY;
+			a.Code.SetValue("IT-12345");
+			a.Evaluate();
+
+			Assert.IsTrue(a.Code.IsValid);
+		}
+
+		[Test]
+		public void ToFormattedAddress_ItalyWithInvalidCode_IsNotValid() {
+			var a = new Address();
+
+			a.Country = Countries.ITALY;
+			a.Code.SetValue("12345");
+			a.Evaluate();
+
+			Assert.IsFalse(a.Code.IsValid);
+		}
+
 		#endregion
 
 		#region City Line Logic
