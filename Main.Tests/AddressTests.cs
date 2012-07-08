@@ -433,6 +433,7 @@ namespace Main.Tests {
 		[TestCase("ITALY", true)]
 		[TestCase("MEXICO", true)]
 		[TestCase("NEW ZEALAND", true)]
+		[TestCase("SINGAPORE", false)]
 		[TestCase("THAILAND", true)]
 		public void CityLabel_PerCountry_HasCorrectVisibility(string country, bool expectedVisible) {
 			var a = new Address();
@@ -469,6 +470,7 @@ namespace Main.Tests {
 		[TestCase("ITALY", true)]
 		[TestCase("MEXICO", true)]
 		[TestCase("NEW ZEALAND", false)]
+		[TestCase("SINGAPORE", false)]
 		[TestCase("THAILAND", false)]
 		public void StateLabel_PerCountry_HasCorrectVisibility(string country, bool expectedVisible) {
 			var a = new Address();
@@ -487,6 +489,7 @@ namespace Main.Tests {
 		[TestCase("ITALY", "Postal Code")]
 		[TestCase("MEXICO", "Postal Code")]
 		[TestCase("NEW ZEALAND", "Postal Code")]
+		[TestCase("SINGAPORE", "Postal Code")]
 		[TestCase("THAILAND", "Postal Code")]
 		public void CodeLabel_PerCountry_ItIsNamedZipCode(string country, string expectedLabel) {
 			var a = new Address();
@@ -506,6 +509,7 @@ namespace Main.Tests {
 		[TestCase("ITALY", true)]
 		[TestCase("MEXICO", true)]
 		[TestCase("NEW ZEALAND", true)]
+		[TestCase("SINGAPORE", true)]
 		[TestCase("THAILAND", true)]
 		public void CodeIsVisible_PerCountry_ItIsVisible(string country, bool expectedVisible) {
 			var a = new Address();
@@ -636,6 +640,20 @@ namespace Main.Tests {
 
 			a.Country = Countries.SettingsFor(country);
 			a.City.SetValue(sampleCity);
+			a.Code.SetValue(sampleCode);
+			a.Evaluate();
+			var result = a.ToFormattedAddress();
+
+			Assert.IsTrue(Regex.IsMatch(result, expectation, RegexOptions.IgnoreCase));
+		}
+
+		[Test]
+		public void ToFormattedAddress_Singapore_CityLineInOutputMatchesSpec26() {
+			var a = new Address();
+			var sampleCode = "12345";
+			var expectation = String.Format(@"Singapore {0}", sampleCode);
+
+			a.Country = Countries.SINGAPORE;
 			a.Code.SetValue(sampleCode);
 			a.Evaluate();
 			var result = a.ToFormattedAddress();
