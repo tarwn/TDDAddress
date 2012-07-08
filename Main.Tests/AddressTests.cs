@@ -345,6 +345,7 @@ namespace Main.Tests {
 		[TestCase("CANADA", "City")]
 		[TestCase("CHINA", "City")]
 		[TestCase("INDIA", "City")]
+		[TestCase("ITALY", "Town")]
 		[TestCase("MEXICO", "City")]
 		public void CityLabel_PerCountry_HasCorrectName(string country, string expectedLabel) {
 			var a = new Address();
@@ -361,6 +362,7 @@ namespace Main.Tests {
 		[TestCase("CANADA", true)]
 		[TestCase("CHINA", true)]
 		[TestCase("INDIA", true)]
+		[TestCase("ITALY", true)]
 		[TestCase("MEXICO", true)]
 		public void CityLabel_PerCountry_HasCorrectVisibility(string country, bool expectedVisible) {
 			var a = new Address();
@@ -377,6 +379,7 @@ namespace Main.Tests {
 		[TestCase("CANADA", "Province")]
 		[TestCase("CHINA", "Province")]
 		[TestCase("INDIA", "Province")]
+		[TestCase("ITALY", "Provincia")]
 		[TestCase("MEXICO", "State")]
 		public void StateLabel_PerCountry_HasCorrectName(string country, string expectedLabel) {
 			var a = new Address();
@@ -393,6 +396,7 @@ namespace Main.Tests {
 		[TestCase("CANADA", true)]
 		[TestCase("CHINA", true)]
 		[TestCase("INDIA", true)]
+		[TestCase("ITALY", true)]
 		[TestCase("MEXICO", true)]
 		public void StateLabel_PerCountry_HasCorrectVisibility(string country, bool expectedVisible) {
 			var a = new Address();
@@ -408,6 +412,7 @@ namespace Main.Tests {
 		[TestCase("CANADA", "Postal Code")]
 		[TestCase("CHINA", "Postal Code")]
 		[TestCase("INDIA", "Postal Code")]
+		[TestCase("ITALY", "Postal Code")]
 		[TestCase("MEXICO", "Postal Code")]
 		public void CodeLabel_PerCountry_ItIsNamedZipCode(string country, string expectedLabel) {
 			var a = new Address();
@@ -424,6 +429,7 @@ namespace Main.Tests {
 		[TestCase("CANADA", true)]
 		[TestCase("CHINA", true)]
 		[TestCase("INDIA", true)]
+		[TestCase("ITALY", true)]
 		[TestCase("MEXICO", true)]
 		public void CodeIsVisible_PerCountry_ItIsVisible(string country, bool expectedVisible) {
 			var a = new Address();
@@ -526,6 +532,23 @@ namespace Main.Tests {
 			Assert.IsTrue(Regex.IsMatch(result, expectation, RegexOptions.IgnoreCase));
 		}
 
+		[Test]
+		public void ToFormattedAddress_Italy_CityLineInOutputMatchesSpec26() {
+			var a = new Address();
+			var sampleCity = "City";
+			var sampleState = "AB";
+			var sampleCode = "12345";
+			var expectation = String.Format(@"{2} {0} \({1}\)", sampleCity, sampleState, sampleCode);
+
+			a.Country = Countries.ITALY;
+			a.City.SetValue(sampleCity);
+			a.State.SetValue(sampleState);
+			a.Code.SetValue(sampleCode);
+			a.Evaluate();
+			var result = a.ToFormattedAddress();
+
+			Assert.IsTrue(Regex.IsMatch(result, expectation, RegexOptions.IgnoreCase));
+		}
 		#endregion
 	}
 }
