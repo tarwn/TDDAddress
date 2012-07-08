@@ -369,6 +369,8 @@ namespace Main.Tests {
 		[TestCase("INDIA", "City")]
 		[TestCase("ITALY", "Town")]
 		[TestCase("MEXICO", "City")]
+		[TestCase("NEW ZEALAND", "Town")]
+		[TestCase("THAILAND", "Town")]
 		public void CityLabel_PerCountry_HasCorrectName(string country, string expectedLabel) {
 			var a = new Address();
 
@@ -386,6 +388,8 @@ namespace Main.Tests {
 		[TestCase("INDIA", true)]
 		[TestCase("ITALY", true)]
 		[TestCase("MEXICO", true)]
+		[TestCase("NEW ZEALAND", true)]
+		[TestCase("THAILAND", true)]
 		public void CityLabel_PerCountry_HasCorrectVisibility(string country, bool expectedVisible) {
 			var a = new Address();
 
@@ -420,6 +424,8 @@ namespace Main.Tests {
 		[TestCase("INDIA", true)]
 		[TestCase("ITALY", true)]
 		[TestCase("MEXICO", true)]
+		[TestCase("NEW ZEALAND", false)]
+		[TestCase("THAILAND", false)]
 		public void StateLabel_PerCountry_HasCorrectVisibility(string country, bool expectedVisible) {
 			var a = new Address();
 
@@ -436,6 +442,8 @@ namespace Main.Tests {
 		[TestCase("INDIA", "Postal Code")]
 		[TestCase("ITALY", "Postal Code")]
 		[TestCase("MEXICO", "Postal Code")]
+		[TestCase("NEW ZEALAND", "Postal Code")]
+		[TestCase("THAILAND", "Postal Code")]
 		public void CodeLabel_PerCountry_ItIsNamedZipCode(string country, string expectedLabel) {
 			var a = new Address();
 
@@ -453,6 +461,8 @@ namespace Main.Tests {
 		[TestCase("INDIA", true)]
 		[TestCase("ITALY", true)]
 		[TestCase("MEXICO", true)]
+		[TestCase("NEW ZEALAND", true)]
+		[TestCase("THAILAND", true)]
 		public void CodeIsVisible_PerCountry_ItIsVisible(string country, bool expectedVisible) {
 			var a = new Address();
 
@@ -565,6 +575,23 @@ namespace Main.Tests {
 			a.Country = Countries.ITALY;
 			a.City.SetValue(sampleCity);
 			a.State.SetValue(sampleState);
+			a.Code.SetValue(sampleCode);
+			a.Evaluate();
+			var result = a.ToFormattedAddress();
+
+			Assert.IsTrue(Regex.IsMatch(result, expectation, RegexOptions.IgnoreCase));
+		}
+
+		[TestCase("NEW ZEALAND")]
+		[TestCase("THAILAND")]
+		public void ToFormattedAddress_ThailandOrNewZealand_CityLineInOutputMatchesSpec28(string country) {
+			var a = new Address();
+			var sampleCity = "City";
+			var sampleCode = "12345";
+			var expectation = String.Format(@"{0} {1}", sampleCity, sampleCode);
+
+			a.Country = Countries.SettingsFor(country);
+			a.City.SetValue(sampleCity);
 			a.Code.SetValue(sampleCode);
 			a.Evaluate();
 			var result = a.ToFormattedAddress();

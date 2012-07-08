@@ -14,6 +14,8 @@ namespace Main {
 		public static Country INDIA = new Country("IN", zipCodePattern: @".+", zipCodeName: "Postal Code", stateName: "Province", fullName: "INDIA");
 		public static Country ITALY = new Country("IT", zipCodePattern: @"IT-\d{5}", cityLine: "p c (s)", zipCodeName: "Postal Code", stateName: "Provincia", cityName: "Town", fullName: "ITALY");
 		public static Country MEXICO = new Country("MX", zipCodePattern: @"\d{5}", cityLine: "p c, s", zipCodeName: "Postal Code", fullName: "MEXICO");
+		public static Country NEWZEALAND = new Country("NZ", zipCodePattern: @".+", cityLine: "c p", zipCodeName: "Postal Code", cityName: "Town", fullName: "NEW ZEALAND");
+		public static Country THAILAND = new Country("TH", zipCodePattern: @".+", cityLine: "c p", zipCodeName: "Postal Code", cityName: "Town", fullName: "THAILAND");
 
 		public static List<Country> _countries = new List<Country>() { 
 			US,
@@ -24,6 +26,8 @@ namespace Main {
 			INDIA,
 			ITALY,
 			MEXICO,
+			NEWZEALAND,
+			THAILAND,
 		};
 
 		public static Country SettingsFor(string countryName)
@@ -41,12 +45,12 @@ namespace Main {
 		public string CityLineTemplate { get; private set; }
 
 		public string CityName { get; private set; }
-		public bool HasCity { get { return !string.IsNullOrWhiteSpace(CityName); } }
+		public bool HasCity { get { return CityLineTemplate.Contains("c"); } }
 
 		public string StateName { get; private set; }
-		public bool HasState { get { return !string.IsNullOrWhiteSpace(StateName); } }
+		public bool HasState { get { return CityLineTemplate.Contains("s"); } }
 
-		public bool HasZipCode { get { return !String.IsNullOrWhiteSpace(ZipCodePattern); } }
+		public bool HasZipCode { get { return CityLineTemplate.Contains("p"); } }
 		public string ZipCodePattern { get; private set; }
 		public string ZipCodeName { get; private set; }
 
